@@ -1,0 +1,37 @@
+﻿@{
+
+}
+@model IEnumerable<LineIN.BFO.Models.Cliente>
+
+
+<a type="button" class="btn btn-primary mb-3" asp-controller="Participante" asp-action="Incluir">incluir</a>
+<table class="table table-responsive table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">CNPJ/CPF</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int cont = 0;
+            foreach (var cliente in @Model)
+            {
+                cont++;
+                <tr>
+                    <th scope="row">@cont</th>
+                    <td>@cliente.CNPJouCPF</td>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.Email</td>
+                    <td>
+                        <a type="button" class="btn btn-outline-warning" asp-controller="Participante" asp-action="Editar" asp-route-CNPJ="@cliente.CNPJouCPF">Editar</a>
+                        <button type="button" class="btn btn-outline-danger" asp-controller="Participante" asp-action="Excluir" asp-route-CNPJ="@cliente.CNPJouCPF">Excluir</button>
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@{
+}
+@model LineIN.BFO.Web.Models.ClienteVM
+
+<div class="modal" tabindex="-1" role="dialog" id="modal-default">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Erros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
+
+<script>
+
+
+        $(document).ready(function ($) {
+
+            var isValid = "@ViewData.ModelState.IsValid.ToString()";
+            if (isValid=="False") {
+                  $("#modal-default").modal();
+            };
+
+            $("#CEP").mask("00.000-000");
+
+            // Mascara de CPF e CNPJ
+            var CpfCnpjMaskBehavior = function (val) {
+                return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';
+            },
+                cpfCnpjpOptions = {
+                    onKeyPress: function (val, e, field, options) {
+                        field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);
+                    }
+                };
+
+            var CpfCnpjMaskBehavior = function (val) {
+                return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';
+            },
+                cpfCnpjpOptions = {
+                    onKeyPress: function (val, e, field, options) {
+                        field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);
+                    }
+                };
+
+            $(function () {
+                $(':input[id=CnpjCpf]').mask(CpfCnpjMaskBehavior, cpfCnpjpOptions);
+            })
+
+        });
+</script>

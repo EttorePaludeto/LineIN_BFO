@@ -1,0 +1,20 @@
+﻿@{
+}
+@model LineIN.BFO.Web.Models.ClienteVM
+
+
+<form method="post" asp-controller="Participante" asp-action="Incluir">
+
+   <partial name="_form" />
+   
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a type="button" class="btn btn-outline-danger" asp-controller="Participante" asp-action="ListaParticipantes">Cancelar</a>
+
+</form>
+
+
+
+<partial name="_ValidateAndMasks" />
+
+
