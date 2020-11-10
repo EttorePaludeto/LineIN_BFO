@@ -22,6 +22,7 @@ namespace LineIN.BFO.Web.Controllers
             mapper = _mapper;
         }
 
+        [HttpGet]
         public IActionResult ListaParticipantes()
         {
             var clientes = clienteRepository.GetAll();
@@ -62,21 +63,12 @@ namespace LineIN.BFO.Web.Controllers
         //Trocar pelo ID depois. Como a lista é faze, um novo GUID é gerado a cada requisição.
         public IActionResult Editar(string CNPJ)
         {
-            clienteRepository.CriarListaFake();
+           
             var cliente = clienteRepository.GetBy(c=>c.CNPJouCPF == CNPJ);
             var clienteVm = mapper.Map<ClienteVM>(cliente);
             return View(clienteVm);
         }
 
-        [HttpGet]
-        //Trocar pelo ID depois. Como a lista é faze, um novo GUID é gerado a cada requisição.
-        public IActionResult Excluir(string CNPJ)
-        {
-            clienteRepository.CriarListaFake();
-            var cliente = clienteRepository.GetBy(c => c.CNPJouCPF == CNPJ);
-            var clienteVm = mapper.Map<ClienteVM>(cliente);
-            return View(clienteVm);
-        }
 
         [HttpPost]
         public IActionResult Editar(ClienteVM cliente)
@@ -102,6 +94,16 @@ namespace LineIN.BFO.Web.Controllers
             }
 
             return View(cliente);
+        }
+
+
+        [HttpGet]
+        //Trocar pelo ID depois. Como a lista é faze, um novo GUID é gerado a cada requisição.
+        public IActionResult Excluir(string CNPJ)
+        {
+            var cliente = clienteRepository.GetBy(c => c.CNPJouCPF == CNPJ);
+            clienteRepository.Delete(cliente);
+            return RedirectToAction("ListaParticipantes");
         }
     }
 }

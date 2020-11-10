@@ -17,8 +17,10 @@
     </thead>
     <tbody>
         @{int cont = 0;
-            foreach (var cliente in @Model)
+            @foreach (var cliente in @Model)
             {
+                ViewBag.nome = cliente.Nome;
+                ViewBag.id = cliente.Id;
                 cont++;
                 <tr>
                     <th scope="row">@cont</th>
@@ -27,11 +29,14 @@
                     <td>@cliente.Email</td>
                     <td>
                         <a type="button" class="btn btn-outline-warning" asp-controller="Participante" asp-action="Editar" asp-route-CNPJ="@cliente.CNPJouCPF">Editar</a>
-                        <button type="button" class="btn btn-outline-danger" asp-controller="Participante" asp-action="Excluir" asp-route-CNPJ="@cliente.CNPJouCPF">Excluir</button>
+                        <a type="button" class="btn btn-outline-danger" asp-controller="Participante" asp-action="Excluir" asp-route-CNPJ="@cliente.CNPJouCPF">Excluir</a>
+                        
                     </td>
-
                 </tr>
             }
         }
     </tbody>
 </table>
+
+
+

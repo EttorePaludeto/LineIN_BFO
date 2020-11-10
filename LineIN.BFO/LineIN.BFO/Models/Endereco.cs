@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace LineIN.BFO.Models
 {
-    [ComplexType]
+    [Owned]
     public class Endereco
     {
         public string Municipio { get; set; }

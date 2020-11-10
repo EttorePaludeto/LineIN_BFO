@@ -1,4 +1,5 @@
 ﻿using LineIN.BFO.Helpers;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace LineIN.BFO.Models
         public string Email { get; set; }
         public Endereco Endereco { get; set; }
 
-        public Cliente()
+        public Cliente(): base()
         {
            
         }

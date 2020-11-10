@@ -64,6 +64,7 @@ namespace LineIN.BFO.Repositorys
 
         public virtual void Insert(TEntity entity)
         {
+
             _dbSet.Add(entity);
             SaveChanges();
         }
