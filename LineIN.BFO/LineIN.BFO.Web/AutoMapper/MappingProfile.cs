@@ -10,8 +10,10 @@ namespace LineIN.BFO.Web.AutoMapper
         {
             // Add as many of these lines as you need to map your objects
             CreateMap<ParticipanteVM, Participante>().ReverseMap();
-            CreateMap<EnderecoVM, Endereco>().ReverseMap(); 
-            
+            CreateMap<EnderecoVM, Endereco>().ReverseMap();
+            CreateMap<VendaVM, Venda>().ReverseMap();
+            CreateMap<VendaParcelaVM, VendaParcela>().ReverseMap();
+
         }
     }
 }

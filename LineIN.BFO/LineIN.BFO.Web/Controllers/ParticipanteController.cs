@@ -25,8 +25,9 @@ namespace LineIN.BFO.Web.Controllers
         [HttpGet]
         public IActionResult ListaParticipantes()
         {
-            var clientes = participanteRepository.GetAll();
-            return View(clientes);
+           var participantes = participanteRepository.GetAll();
+           var participantesVM = mapper.Map<List<Participante>, List<ParticipanteVM>>(participantes);
+           return View(participantesVM);
         }
 
         [HttpGet]
@@ -48,7 +49,7 @@ namespace LineIN.BFO.Web.Controllers
                     foreach (var item in participante.Notifications())
                     {
                         ModelState.AddModelError(item.Key, item.Message);
-                        return View(participante);
+                        return View(participanteVm);
                     }
                 }
 

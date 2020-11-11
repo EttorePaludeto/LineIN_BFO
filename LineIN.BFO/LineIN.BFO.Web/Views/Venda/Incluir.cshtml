@@ -1,0 +1,16 @@
+﻿@{
+}
+@model LineIN.BFO.Web.Models.VendaVM
+
+    <h3 class="alert alert-primary">Informações Venda</h3>
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Selecione o Cliente</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+            @foreach (var item in ViewBag.Parts)
+            {
+                <option>@item.Nome</option>
+            }
+
+        </select>
+    </div>
