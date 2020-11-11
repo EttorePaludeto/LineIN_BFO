@@ -12,20 +12,20 @@ namespace LineIN.BFO.Web.Controllers
 {
     public class ParticipanteController : BaseController
     {
-        public readonly IClienteRepository clienteRepository;
+        public readonly IParticipanteRepository participanteRepository;
         public readonly IMapper mapper;
 
 
-        public ParticipanteController(IClienteRepository _clienteRepository, IMapper _mapper)
+        public ParticipanteController(IParticipanteRepository _participanteRepository, IMapper _mapper)
         {
-            clienteRepository = _clienteRepository;
+            participanteRepository = _participanteRepository;
             mapper = _mapper;
         }
 
         [HttpGet]
         public IActionResult ListaParticipantes()
         {
-            var clientes = clienteRepository.GetAll();
+            var clientes = participanteRepository.GetAll();
             return View(clientes);
         }
 
@@ -36,27 +36,27 @@ namespace LineIN.BFO.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Incluir(ClienteVM cliente)
+        public IActionResult Incluir(ParticipanteVM participanteVm)
         {
        
             if (ModelState.IsValid)
             {
-                var ClienteDominio = mapper.Map<Cliente>(cliente);
+                var participante = mapper.Map<Participante>(participanteVm);
                 
-                if (ClienteDominio.InValid)
+                if (participante.InValid)
                 {
-                    foreach (var item in ClienteDominio.Notifications())
+                    foreach (var item in participante.Notifications())
                     {
                         ModelState.AddModelError(item.Key, item.Message);
-                        return View(cliente);
+                        return View(participante);
                     }
                 }
 
-                clienteRepository.Insert(ClienteDominio);
+                participanteRepository.Insert(participante);
                 return RedirectToAction("ListaParticipantes");
             }
 
-            return View(cliente);
+            return View(participanteVm);
         }
 
         [HttpGet]
@@ -64,32 +64,32 @@ namespace LineIN.BFO.Web.Controllers
         public IActionResult Editar(string CNPJ)
         {
            
-            var cliente = clienteRepository.GetBy(c=>c.CNPJouCPF == CNPJ);
-            var clienteVm = mapper.Map<ClienteVM>(cliente);
-            return View(clienteVm);
+            var participante = participanteRepository.GetBy(c=>c.CNPJouCPF == CNPJ);
+            var participanteVm = mapper.Map<ParticipanteVM>(participante);
+            return View(participanteVm);
         }
 
 
         [HttpPost]
-        public IActionResult Editar(ClienteVM cliente)
+        public IActionResult Editar(ParticipanteVM cliente)
         {
             if (ModelState.IsValid)
             {
 
-                var ClienteDominio = clienteRepository.GetBy(c => c.Id == cliente.Id);
+                var participante = participanteRepository.GetBy(c => c.Id == cliente.Id);
 
                 //var ClienteDominio = mapper.Map<Cliente>(cliente);
 
-                if (ClienteDominio.InValid)
+                if (participante.InValid)
                 {
-                    foreach (var item in ClienteDominio.Notifications())
+                    foreach (var item in participante.Notifications())
                     {
                         ModelState.AddModelError(item.Key, item.Message);
                         return View(cliente);
                     }
                 }
 
-                clienteRepository.Update(ClienteDominio);
+                participanteRepository.Update(participante);
                 return RedirectToAction("ListaParticipantes");
             }
 
@@ -101,8 +101,8 @@ namespace LineIN.BFO.Web.Controllers
         //Trocar pelo ID depois. Como a lista é faze, um novo GUID é gerado a cada requisição.
         public IActionResult Excluir(string CNPJ)
         {
-            var cliente = clienteRepository.GetBy(c => c.CNPJouCPF == CNPJ);
-            clienteRepository.Delete(cliente);
+            var participante = participanteRepository.GetBy(c => c.CNPJouCPF == CNPJ);
+            participanteRepository.Delete(participante);
             return RedirectToAction("ListaParticipantes");
         }
     }

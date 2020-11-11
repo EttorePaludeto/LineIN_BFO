@@ -1,7 +1,7 @@
 ﻿@{
 
 }
-@model IEnumerable<LineIN.BFO.Models.Cliente>
+@model IEnumerable<LineIN.BFO.Web.Models.ParticipanteVM>
 
 
 <a type="button" class="btn btn-primary mb-3" asp-controller="Participante" asp-action="Incluir">incluir</a>
@@ -17,19 +17,19 @@
     </thead>
     <tbody>
         @{int cont = 0;
-            @foreach (var cliente in @Model)
+            @foreach (var participante in @Model)
             {
-                ViewBag.nome = cliente.Nome;
-                ViewBag.id = cliente.Id;
+                ViewBag.nome = participante.Nome;
+                ViewBag.id = participante.Id;
                 cont++;
                 <tr>
                     <th scope="row">@cont</th>
-                    <td>@cliente.CNPJouCPF</td>
-                    <td>@cliente.Nome</td>
-                    <td>@cliente.Email</td>
+                    <td>@participante.CNPJouCPF</td>
+                    <td>@participante.Nome</td>
+                    <td>@participante.Email</td>
                     <td>
-                        <a type="button" class="btn btn-outline-warning" asp-controller="Participante" asp-action="Editar" asp-route-CNPJ="@cliente.CNPJouCPF">Editar</a>
-                        <a type="button" class="btn btn-outline-danger" asp-controller="Participante" asp-action="Excluir" asp-route-CNPJ="@cliente.CNPJouCPF">Excluir</a>
+                        <a type="button" class="btn btn-outline-warning" asp-controller="Participante" asp-action="Editar" asp-route-CNPJ="@participante.CNPJouCPF">Editar</a>
+                        <a type="button" class="btn btn-outline-danger" asp-controller="Participante" asp-action="Excluir" asp-route-CNPJ="@participante.CNPJouCPF">Excluir</a>
                         
                     </td>
                 </tr>

@@ -1,25 +1,20 @@
 ﻿using LineIN.BFO.Helpers;
-using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LineIN.BFO.Models
 {
-
-    public class Cliente : Entity
+    public class Participante : Entity
     {
         public string CNPJouCPF { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public Endereco Endereco { get; set; }
 
-        public Cliente(): base()
+        public Participante(): base()
         {
            
         }
 
-        private Cliente(string cnpjOucpf, string nome, string email, Endereco endereco)
+        private Participante(string cnpjOucpf, string nome, string email, Endereco endereco)
         {
             if (!cnpjOucpf.IsValidCnpjOuCpf())
             {
@@ -32,13 +27,10 @@ namespace LineIN.BFO.Models
             Endereco = endereco;
         }
 
-        public static Cliente New(string cnpjOucpf, string nome, string email, Endereco endereco)
+        public static Participante New(string cnpjOucpf, string nome, string email, Endereco endereco)
         {
-            return new Cliente(cnpjOucpf, nome, email, endereco);
+            return new Participante(cnpjOucpf, nome, email, endereco);
         }
-
-      
-
 
     }
 

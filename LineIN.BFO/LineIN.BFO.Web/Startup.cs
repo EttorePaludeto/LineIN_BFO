@@ -31,7 +31,7 @@ namespace LineIN.BFO.Web
 
             services.AddControllersWithViews();
             //services.AddScoped<IRepository, Repository>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IParticipanteRepository, ParticipanteRepository>();
 
             var config = new MapperConfiguration(cfg =>
             {

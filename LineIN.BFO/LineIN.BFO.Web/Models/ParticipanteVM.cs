@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace LineIN.BFO.Web.Models
 {
 
-    public class ClienteVM 
+    public class ParticipanteVM 
     {
         public Guid Id { get; set; }
         [Required(ErrorMessage = "CNPJ é Campo Obrigatório")]
@@ -16,7 +16,7 @@ namespace LineIN.BFO.Web.Models
         [Required(ErrorMessage = "ENDEREÇO é Obrigatório")]
         public EnderecoVM Endereco { get; set; }
 
-        public ClienteVM()
+        public ParticipanteVM()
         {
             Endereco = new EnderecoVM();
         }

@@ -9,7 +9,7 @@ namespace LineIN.BFO.Web.AutoMapper
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<ClienteVM, Cliente>().ReverseMap();
+            CreateMap<ParticipanteVM, Participante>().ReverseMap();
             CreateMap<EnderecoVM, Endereco>().ReverseMap(); 
             
         }

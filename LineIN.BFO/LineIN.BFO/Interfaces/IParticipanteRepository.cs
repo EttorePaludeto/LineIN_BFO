@@ -2,7 +2,7 @@
 
 namespace LineIN.BFO.Interfaces
 {
-    public interface IClienteRepository: IRepository<Cliente>
+    public interface IParticipanteRepository: IRepository<Participante>
     {
         void CriarListaFake();
     }

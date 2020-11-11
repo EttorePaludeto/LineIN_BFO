@@ -7,11 +7,11 @@ using System.Text;
 
 namespace LineIN.BFO.Data.Mapping
 {
-    public class ClienteMap : IEntityTypeConfiguration<Cliente>
+    public class ParticipanteMap : IEntityTypeConfiguration<Participante>
     {
-        public void Configure(EntityTypeBuilder<Cliente> builder)
+        public void Configure(EntityTypeBuilder<Participante> builder)
         {
-            builder.ToTable("Cliente");
+            builder.ToTable("Participante");
             builder.HasKey(i => i.Id);
             builder.Property(i => i.Id).HasColumnName("Id");
             builder.Property(i => i.CNPJouCPF).HasColumnName("CNPJouCPF");
