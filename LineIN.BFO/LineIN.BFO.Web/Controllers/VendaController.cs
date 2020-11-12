@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using LineIN.BFO.Interfaces;
+using LineIN.BFO.Models;
+using LineIN.BFO.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LineIN.BFO.Web.Controllers
@@ -11,19 +14,25 @@ namespace LineIN.BFO.Web.Controllers
     {
         private readonly IVendaRepository vendaRepository;
         private readonly IParticipanteRepository participanteRepository;
+        public readonly IMapper mapper;
 
         public VendaController(IVendaRepository vendaRepository, 
-            IParticipanteRepository participanteRepository) 
+            IParticipanteRepository participanteRepository,
+            IMapper mapper) 
         {
             this.participanteRepository = participanteRepository;
             this.vendaRepository = vendaRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Incluir()
         {
-            ViewBag.Parts = participanteRepository.GetAll();
-            return View();
+
+            VendaVM vendaVM = new VendaVM();
+            var participantes = participanteRepository.GetAll().ToList();
+            vendaVM.ListaParticipantes = mapper.Map<List<Participante>, List<ParticipanteVM>>(participantes);
+            return View(vendaVM);
         }
     }
 }

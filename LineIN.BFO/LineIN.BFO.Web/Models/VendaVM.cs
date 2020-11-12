@@ -15,9 +15,12 @@ namespace LineIN.BFO.Web.Models
         public DateTime Data { get; private set; }
         public List<VendaParcelaVM> Parcelas { get; set; }
 
-        private VendaVM()
+        public List<ParticipanteVM> ListaParticipantes { get; set; }
+
+        public VendaVM()
         {
             Parcelas = new List<VendaParcelaVM>();
+            ListaParticipantes = new List<ParticipanteVM>();
         }
     }
 

@@ -2,15 +2,27 @@
 }
 @model LineIN.BFO.Web.Models.VendaVM
 
-    <h3 class="alert alert-primary">Informações Venda</h3>
+<h3 class="alert alert-primary">Informações Venda</h3>
 
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Selecione o Cliente</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-            @foreach (var item in ViewBag.Parts)
-            {
-                <option>@item.Nome</option>
-            }
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Selecione o Cliente</label>
+    <select class="form-control" id="participanteId">
+        @foreach (var item in Model.ListaParticipantes)
+        {
+            <option>@item.Nome</option>
+        }
+    </select>
+</div>
 
-        </select>
-    </div>
+
+<div class="form-group">
+    <label for="">CNPJ/CPF *</label>
+    <input asp-for="@Model.Participante.Nome" type="text" class="form-control" id="CnpjCpf" placeholder="Informe o CNPJ ou CPF">
+</div>
+
+<script>
+
+    var nome = document.getElementById('participanteId');
+    
+
+</script>
